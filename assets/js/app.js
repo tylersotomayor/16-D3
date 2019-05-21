@@ -32,19 +32,19 @@ var chartGroup = svg.append("g")
 // .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
 // Read from data.csv
-d3.csv("../Web-d3js-html5/assets/data/data.csv", function(err, brfssdata) {
-    //d3.csv("/data/data.csv", function(err, brfssdata) {
+d3.csv("data.csv", function(err, data) {
+    //d3.csv("/data/data.csv", function(err, data) {
     if (err) throw err;
     //if (error) return console.warn(error);
-    console.log(brfssdata)
+    console.log(data)
     
     //loop through the csv file & .
-    for (var i = 0; i < brfssdata.length; i++) {
-        console.log(i, brfssdata[i].state, brfssdata[i].poverty, brfssdata[i].healthcare );
-        console.log(i, brfssdata[i].obesity, brfssdata[i].income  );
+    for (var i = 0; i < data.length; i++) {
+        console.log(i, data[i].state, data[i].poverty, data[i].healthcare );
+        console.log(i, data[i].obesity, data[i].income  );
     }
 
-    brfssdata.forEach(function(data) {
+    data.forEach(function(data) {
         data.poverty = +data.poverty;
         data.healthcare = +data.healthcare;
       })
@@ -60,7 +60,7 @@ d3.csv("../Web-d3js-html5/assets/data/data.csv", function(err, brfssdata) {
   
       // Scale the domain
       xLinearScale.domain([8,
-          d3.max(brfssdata, function(data) {
+          d3.max(data, function(data) {
           return +data.poverty * 1.05;
         }),
       ]);
